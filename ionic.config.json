@@ -1,0 +1,7 @@
+{
+  "name": "uforoapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
