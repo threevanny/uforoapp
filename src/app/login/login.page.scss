@@ -1,0 +1,12 @@
+$our-red: #D43131;
+$our-white: #ffffff;
+
+.is-red {
+  color: $our-red;
+}
+.is-white {
+  color: $our-white;
+}
+.is-bg-red {
+  background-color: $our-red;
+}

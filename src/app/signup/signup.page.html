@@ -5,5 +5,50 @@
 </ion-header>
 
 <ion-content>
-
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="content has-text-centered">
+            <h1 class="title">Registrarse</h1>
+            <br>
+            <br>
+            <form #form="ngForm" (ngSubmit)="login(form)" method="post">
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input is-large is-rounded" type="name" placeholder="Nombre">
+                  <span class=" icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input is-large is-rounded" type="email" placeholder="Correo">
+                  <span class=" icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input is-large is-rounded" type="password" placeholder="Contraseña">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+              <br>
+              <button type="submit" class="button is-bg-red is-rounded is-white is-fullwidth is-large">
+                Registrarse
+              </button>
+              <br>
+              <br>
+              <p class=""><a href="#" class="is-red subtitle has-text-weight-bold">Iniciar Sesión</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </ion-content>
