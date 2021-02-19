@@ -6,7 +6,7 @@ import { EnvService } from '../env.service';
 import { } from '../../models/user';
 import { Router } from '@angular/router';
 
-const API = 'https://localhost:3000/api/v1';
+const API = 'http://localhost:3000/api/v1';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AuthService {
   token: any;
 
   constructor(
-    public http: HttpClient,
+    private http: HttpClient,
     private storage: NativeStorage,
     private env: EnvService,
     private router: Router,
@@ -31,37 +31,10 @@ export class AuthService {
         this.router.navigate(["/tabs/profile"]);
       }
     })
-    //.pipe(
-    //   tap(token => {
-    //     this.storage.setItem('token', token)
-    //       .then(() => {
-    //         console.log('Token Stored', token);
-    //       },
-    //         error => console.error('Error storing item', error)
-    //       );
-    //     this.token = token;
-    //     this.isLoggedIn = true;
-    //     return token;
-    //   }),
-    // );
   }
 
   logout() {
-    const headers = new HttpHeaders({
-      'Authorization': this.token["token_type"] + ""
-        + this.token["access_token"]
-    });
 
-    return this.http.post(`${this.env.API}/user/logout`,
-      { headers: headers })
-      .pipe(
-        tap(data => {
-          this.storage.remove("token");
-          this.isLoggedIn = false;
-          delete this.token;
-          return data;
-        })
-      )
   }
 
   signup(name: String, email: String, password: String) {
@@ -71,16 +44,7 @@ export class AuthService {
   }
 
   user() {
-    const headers = new HttpHeaders({
-      'Authorization': this.token["token_type"] + " " + this.token["access_token"]
-    });
 
-    return this.http.get(`${this.env.API}/user/signup`,
-      { headers: headers }).pipe(
-        tap(user => {
-          return user;
-        })
-      )
   }
 
   getToken() {
