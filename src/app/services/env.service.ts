@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EnvService {
-  API = 'https://localhost:3000/api/v1';
+  API = 'http://localhost:3000/api/v1';
   constructor() { }
 }
