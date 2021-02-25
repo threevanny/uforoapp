@@ -1,9 +1,36 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>landing</ion-title>
-  </ion-toolbar>
-</ion-header>
+<section class="hero is-fullheight is-gradient">
+  <div class="hero-head">
+    <header class="navbar">
+      <div class="container"></div>
+    </header>
+  </div>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <main class="content">
+        <img src="http://uforoapi.herokuapp.com/assets/logo.png" alt="" srcset="">
+      </main>
+    </div>
+  </div>
+  <div class="hero-foot">
 
-<ion-content>
-  Landing
-</ion-content>
+    <section class="section">
+      <div class="columns is-mobile">
+        <div class="column is-6">
+          <button class="button is-medium is-fullwidth is-rounded is-shadow is-red" (click)="goToLoginPage()">Iniciar
+            Sesión</button>
+        </div>
+        <div class="column is-6">
+          <button class="button is-medium is-fullwidth is-rounded is-shadown is-red"
+            (click)="goToSignupPage()">Registarse</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="tabs is-boxed is-fullwidth">
+      <div class="container has-text-centered">
+        <p class="is-white"><small>© Uforo 2021. Todos los derehos reservados.</small></p>
+      </div>
+    </div>
+
+  </div>
+</section>

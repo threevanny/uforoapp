@@ -1,0 +1,21 @@
+.is-gradient {
+  background: rgb(212,49,49);
+  background: linear-gradient(0deg, rgba(212,49,49,1) 45%, rgba(255,255,255,1) 100%);
+}
+
+$our-red: #D43131;
+$our-white: #ffffff;
+
+.is-red {
+  color: $our-red;
+}
+.is-white {
+  color: $our-white;
+}
+.is-bg-red {
+  background-color: $our-red;
+}
+.btn-container {
+  margin: 0 auto;
+  padding: 20px;
+}
