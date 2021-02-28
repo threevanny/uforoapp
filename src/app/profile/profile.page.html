@@ -5,22 +5,313 @@
 </ion-header>
 
 <ion-content>
-  <section class="section">
-    <div class="container">
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data…">
+
       <div class="columns">
         <div class="column">
-          <div class="box is-shadowless has-text-centered">
-            <figure class="image is-128x128">
-              <img class="is-rounded is-fullwidth" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg"
-                alt="">
-            </figure>
-            <div *ngIf="user != undefined">
-              <p><strong>{{ user["name"] }}</strong></p>
+          <div class="card is-shadowless">
+            <!-- profile -->
+            <div class="profile__container">
+              <div class="profile__card">
+                <div class="profile__header">
+
+                  <span class="icon-text btn__edit">
+                    <span class="icon is-large">
+                      <i class="fas fa-user-edit"></i>
+                    </span>
+                  </span>
+
+                  <span class="icon-text btn__logout">
+                    <span class="icon is-large">
+                      <i class="fas fa-power-off"></i>
+                    </span>
+                  </span>
+
+                  <figure class="image is-128x128">
+                    <img class="is-rounded" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+                  </figure>
+                </div>
+                <div class="profile__body" *ngIf="user != undefined">
+                  <h5><strong>{{ user["name"] }}</strong></h5>
+                  <p class="is-muted"><span>Radiador Springs</span></p>
+                </div>
+                <div class="profile__footer">
+                  <div class="columns is-mobile">
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-comment"></i>
+                        </span>
+                        <span>103 Preguntas</span>
+                      </span>
+                    </div>
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-star"></i>
+                        </span>
+                        <span>1024 Puntos</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <a class="button is-danger is-fullwidth" (click)="logout()">Cerrar Sesión</a>
             </div>
-            <a class="button is-danger is-fullwidth" (click)="logout()">Cerrar Sesión</a>
+            <!-- profile -->
+
+            <!-- post -->
+            <div class="post__container">
+              <div class="post__card">
+                <div class="post__header">
+                  <div class="media">
+                    <div class="media-left">
+                      <ion-avatar slot="start">
+                        <img class="is-rounded image is-48x48"
+                          src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+                      </ion-avatar>
+                    </div>
+                    <div class="media-content">
+                      <p><strong>Nombre De Usuario</strong><span class="post__time"><small>31m</small></span></p>
+                      <small>1024 Pts</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="post__body">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ipsa earum sed ipsum
+                    voluptate repellendus dolorum libero et delectus, temporibus qui? Distinctio officiis, ab libero
+                    ad reprehenderit.
+                    dolorum optio.</p>
+                </div>
+                <div class="post__footer">
+                  <div class="columns is-mobile">
+                    <div class="column is-6">
+                      <small>Humanidades</small>
+                    </div>
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-reply"></i>
+                        </span>
+                        <span>Responder</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- post -->
+            <!-- post -->
+            <div class="post__container">
+              <div class="post__card">
+                <div class="post__header">
+                  <div class="media">
+                    <div class="media-left">
+                      <ion-avatar slot="start">
+                        <img class="is-rounded image is-48x48"
+                          src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+                      </ion-avatar>
+                    </div>
+                    <div class="media-content">
+                      <p><strong>Nombre De Usuario</strong><span class="post__time"><small>31m</small></span></p>
+                      <small>1024 Pts</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="post__body">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ipsa earum sed ipsum
+                    voluptate repellendus dolorum libero et delectus, temporibus qui? Distinctio officiis, ab libero
+                    ad reprehenderit.
+                    dolorum optio.</p>
+                </div>
+                <div class="post__footer">
+                  <div class="columns is-mobile">
+                    <div class="column is-6">
+                      <small>Humanidades</small>
+                    </div>
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-reply"></i>
+                        </span>
+                        <span>Responder</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- post -->
+            <!-- post -->
+            <div class="post__container">
+              <div class="post__card">
+                <div class="post__header">
+                  <div class="media">
+                    <div class="media-left">
+                      <ion-avatar slot="start">
+                        <img class="is-rounded image is-48x48"
+                          src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+                      </ion-avatar>
+                    </div>
+                    <div class="media-content">
+                      <p><strong>Nombre De Usuario</strong><span class="post__time"><small>31m</small></span></p>
+                      <small>1024 Pts</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="post__body">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ipsa earum sed ipsum
+                    voluptate repellendus dolorum libero et delectus, temporibus qui? Distinctio officiis, ab libero
+                    ad reprehenderit.
+                    dolorum optio.</p>
+                </div>
+                <div class="post__footer">
+                  <div class="columns is-mobile">
+                    <div class="column is-6">
+                      <small>Humanidades</small>
+                    </div>
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-reply"></i>
+                        </span>
+                        <span>Responder</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- post -->
+            <!-- post -->
+            <div class="post__container">
+              <div class="post__card">
+                <div class="post__header">
+                  <div class="media">
+                    <div class="media-left">
+                      <ion-avatar slot="start">
+                        <img class="is-rounded image is-48x48"
+                          src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+                      </ion-avatar>
+                    </div>
+                    <div class="media-content">
+                      <p><strong>Nombre De Usuario</strong><span class="post__time"><small>31m</small></span></p>
+                      <small>1024 Pts</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="post__body">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ipsa earum sed ipsum
+                    voluptate repellendus dolorum libero et delectus, temporibus qui? Distinctio officiis, ab libero
+                    ad reprehenderit.
+                    dolorum optio.</p>
+                </div>
+                <div class="post__footer">
+                  <div class="columns is-mobile">
+                    <div class="column is-6">
+                      <small>Humanidades</small>
+                    </div>
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-reply"></i>
+                        </span>
+                        <span>Responder</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- post -->
+            <!-- post -->
+            <div class="post__container">
+              <div class="post__card">
+                <div class="post__header">
+                  <div class="media">
+                    <div class="media-left">
+                      <ion-avatar slot="start">
+                        <img class="is-rounded image is-48x48"
+                          src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+                      </ion-avatar>
+                    </div>
+                    <div class="media-content">
+                      <p><strong>Nombre De Usuario</strong><span class="post__time"><small>31m</small></span></p>
+                      <small>1024 Pts</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="post__body">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ipsa earum sed ipsum
+                    voluptate repellendus dolorum libero et delectus, temporibus qui? Distinctio officiis, ab libero
+                    ad reprehenderit.
+                    dolorum optio.</p>
+                </div>
+                <div class="post__footer">
+                  <div class="columns is-mobile">
+                    <div class="column is-6">
+                      <small>Humanidades</small>
+                    </div>
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-reply"></i>
+                        </span>
+                        <span>Responder</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- post -->
+            <!-- post -->
+            <div class="post__container">
+              <div class="post__card">
+                <div class="post__header">
+                  <div class="media">
+                    <div class="media-left">
+                      <ion-avatar slot="start">
+                        <img class="is-rounded image is-48x48"
+                          src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+                      </ion-avatar>
+                    </div>
+                    <div class="media-content">
+                      <p><strong>Nombre De Usuario</strong><span class="post__time"><small>31m</small></span></p>
+                      <small>1024 Pts</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="post__body">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ipsa earum sed ipsum
+                    voluptate repellendus dolorum libero et delectus, temporibus qui? Distinctio officiis, ab libero
+                    ad reprehenderit.
+                    dolorum optio.</p>
+                </div>
+                <div class="post__footer">
+                  <div class="columns is-mobile">
+                    <div class="column is-6">
+                      <small>Humanidades</small>
+                    </div>
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-reply"></i>
+                        </span>
+                        <span>Responder</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- post -->
           </div>
         </div>
       </div>
-    </div>
-  </section>
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
