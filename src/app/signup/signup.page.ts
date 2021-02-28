@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { from } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
+import { NavController } from '@ionic/angular';
+import { AlertService } from '../services/alert.service'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
@@ -12,6 +15,9 @@ export class SignupPage implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private navCtrl: NavController,
+    private alertService: AlertService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -20,6 +26,14 @@ export class SignupPage implements OnInit {
   signup(form: NgForm) {
     const { name, email, password } = form.value;
     this.authService.signup(name, email, password)
-      .subscribe(res => console.log(res));
+      .subscribe(
+        res => {
+          if (res) {
+            // show message to user
+            console.log(res);
+            this.router.navigate(['/login']);
+          }
+        }
+      )
   }
 }

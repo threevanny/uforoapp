@@ -5,5 +5,22 @@
 </ion-header>
 
 <ion-content>
-
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="box is-shadowless has-text-centered">
+            <figure class="image is-128x128">
+              <img class="is-rounded is-fullwidth" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg"
+                alt="">
+            </figure>
+            <div *ngIf="user != undefined">
+              <p><strong>{{ user["name"] }}</strong></p>
+            </div>
+            <a class="button is-danger is-fullwidth" (click)="logout()">Cerrar Sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </ion-content>

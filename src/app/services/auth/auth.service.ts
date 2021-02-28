@@ -1,67 +1,74 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { EnvService } from '../env.service';
-import { } from '../../models/user';
-import { Router } from '@angular/router';
-
-const API = 'http://localhost:3000/api/v1';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   isLoggedIn = false;
-  token: any;
+  token: string;
 
   constructor(
     private http: HttpClient,
-    private storage: NativeStorage,
     private env: EnvService,
-    private router: Router,
+    private storage: Storage
   ) { }
 
   login(email: String, password: String) {
-    return this.http.post(`${this.env.API}/user/login`,
-      { email: email, password: password }
-    ).subscribe(res => {
-      console.log(res);
-      if (res) {
-        this.router.navigate(["/tabs/profile"]);
-      }
-    })
-  }
-
-  logout() {
-
-  }
-
-  signup(name: String, email: String, password: String) {
-    return this.http.post(`${this.env.API}/user/signup`,
-      { name: name, email: email, password: password }
+    return this.http.post<any>(`${this.env.API}/auth/login`,
+      { email: email, password: password, token: this.token }
     )
   }
 
-  user() {
-
+  logout() {
+    this.removeToken("token");
+    this.getToken("token").then(token => {
+      this.http.post<any>(`${this.env.API}/auth/logout`, { token: token }).subscribe(
+        res => {
+          console.log(res)
+          this.removeToken("token");
+        }
+      )
+    }).catch(err => console.error("ERROR: getToken on logout Failed", err))
   }
 
-  getToken() {
-    return this.storage.getItem('token').then(
-      data => {
-        this.token = data;
+  signup(name: String, email: String, password: String) {
+    return this.http.post(`${this.env.API}/auth/signup`,
+      { name: name, email: email, password: password, password2: password }
+    )
+  }
 
-        if (this.token != null) {
-          this.isLoggedIn = true;
-        } else {
-          this.isLoggedIn = false;
-        }
-      },
-      error => {
-        this.token = null;
-        this.isLoggedIn = false;
+  getProfile(token: string) {
+    return this.http.post<any>(`${this.env.API}/auth/profile`,
+      { token: token }
+    )
+  }
+
+  setToken(key: string, token: string) {
+    this.storage.set(key, token);
+  }
+
+  async getToken(key: string) {
+    return await this.storage.get(key)
+      .then(token => {
+        return token
+      });
+  }
+
+  removeToken(key: string) {
+    this.storage.remove(key);
+  }
+
+  async isAuth() {
+    return await this.getToken("token").then(res => {
+      if (res) {
+        return true;
+      } else {
+        return false;
       }
-    );
+    }).catch(err => console.error("ERROR: Validating Auth", err))
   }
 }
