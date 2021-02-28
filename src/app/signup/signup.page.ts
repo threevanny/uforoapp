@@ -28,7 +28,7 @@ export class SignupPage implements OnInit {
     this.authService.signup(name, email, password)
       .subscribe(
         res => {
-          if (res) {
+          if (res.succes) {
             // show message to user
             console.log(res);
             this.router.navigate(['/login']);

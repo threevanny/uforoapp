@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   signup(name: String, email: String, password: String) {
-    return this.http.post(`${this.env.API}/auth/signup`,
+    return this.http.post<any>(`${this.env.API}/auth/signup`,
       { name: name, email: email, password: password, password2: password }
     )
   }

@@ -12,7 +12,7 @@
         <div class="column">
           <div class="card is-shadowless">
             <!-- profile -->
-            <div class="profile__container">
+            <div class="profile__container" *ngIf="user != undefined">
               <div class="profile__card">
                 <div class="profile__header">
 
@@ -32,7 +32,7 @@
                     <img class="is-rounded" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
                   </figure>
                 </div>
-                <div class="profile__body" *ngIf="user != undefined">
+                <div class="profile__body">
                   <h5><strong>{{ user["name"] }}</strong></h5>
                   <p class="is-muted"><span>Radiador Springs</span></p>
                 </div>
@@ -51,7 +51,7 @@
                         <span class="icon">
                           <i class="fas fa-star"></i>
                         </span>
-                        <span>1024 Puntos</span>
+                        <span>{{ user["points"] }} Puntos</span>
                       </span>
                     </div>
                   </div>

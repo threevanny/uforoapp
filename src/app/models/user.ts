@@ -1,8 +1,9 @@
 export class User {
+  id: string
   name: string
   email: string
-  //avatar: avatar
-  //points: points
-  //location: location
+  avatar: String
+  points: Number
+  location: string
   //post[]: post
 }
