@@ -11,10 +11,28 @@
   <div class="columns">
     <div class="column">
       <section class="section">
-        <textarea class="textarea" placeholder="e.g. Hello world"></textarea>
-        <br>
-        <a class="button is-danger is-fullwidth">Publicar</a>
+        <form #form="ngForm" (ngSubmit)="SendNewQuestion(form)" method="post">
+          <div class="select is-rounded is-fullwidth mb-3">
+            <select ngModel name="tag">
+              <option value="Matemáticas">Matemáticas</option>
+              <option value="Humanidades">Humanidades</option>
+              <option value="Ingles">Ingles</option>
+              <option value="Salud">Salud</option>
+              <option value="Administración">Administración</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <textarea class="textarea" ngModel name="question" placeholder="Escribe tu pregunta..." minlength="5"
+                maxlength="255" required></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="button is-bg-red is-rounded is-white is-fullwidth is-medium">Publicar</button>
+        </form>
       </section>
+
 
     </div>
   </div>

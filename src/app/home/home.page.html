@@ -13,9 +13,10 @@
       <ion-title size="large">Uforo</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <!-- float buttom -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button class="is-red" (click)="addNewQestion()">
+    <ion-fab-button class="is-red" (click)="goToQuestionPage()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -27,7 +28,7 @@
 
         <div class="columns">
           <div class="column">
-            <div class="card is-shadowless">
+            <div class="card is-shadowless" *ngFor="let question of qestionPosts">
               <!-- post -->
               <div class="post__container">
                 <div class="post__card">
@@ -35,26 +36,23 @@
                     <div class="media">
                       <div class="media-left">
                         <ion-avatar slot="start">
-                          <img class="is-rounded image is-48x48"
-                            src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+                          <img class="is-rounded image is-48x48" [src]="question.avatar">
                         </ion-avatar>
                       </div>
                       <div class="media-content">
-                        <p><strong>Nombre De Usuario</strong><span class="post__time"><small>31m</small></span></p>
-                        <small>1024 Pts</small>
+                        <p><strong>{{question.autor}}</strong><span
+                            class="post__time"><small>{{question.createdAt}}</small></span></p>
+                        <small>{{question.points}} Pts</small>
                       </div>
                     </div>
                   </div>
                   <div class="post__body">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ipsa earum sed ipsum
-                      voluptate repellendus dolorum libero et delectus, temporibus qui? Distinctio officiis, ab libero
-                      ad reprehenderit.
-                      dolorum optio.</p>
+                    <p>{{question.question}}</p>
                   </div>
                   <div class="post__footer">
                     <div class="columns is-mobile">
                       <div class="column is-6">
-                        <small>Humanidades</small>
+                        <small>{{question.tag}}</small>
                       </div>
                       <div class="column is-6">
                         <span class="icon-text">

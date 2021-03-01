@@ -12,27 +12,10 @@ export class ApiService {
     private env: EnvService
   ) { }
 
-  //Questions request 
-  getQuestionById(id: String) {
-    return this.http.get(`${this.env.API}/question/${id}`);
+  //get a user by ID
+  getUserById(id: String) {
+    return this.http.get<any>(`${this.env.API}/user/${id}`);
   }
-
-  getQuestions() {
-    return this.http.get(`${this.env.API}/questions/`);
-  }
-
-  newQuestion(data: any) {
-    return this.http.post(`${this.env.API}/question/new/`, data);
-  }
-
-  updateQuestion(id: String, data: any) {
-    return this.http.put(`${this.env.API}/question/update/${id}`, data);
-  }
-
-  deleteQuestion(id: String) {
-    return this.http.delete(`${this.env.API}/question/delete/${id}`);
-  }
-
   //Replies request
   getReplyById(id: String) {
     return this.http.get(`${this.env.API}/reply/${id}`);

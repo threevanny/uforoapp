@@ -28,9 +28,13 @@ export class ProfilePage implements OnInit {
     this.validateIsAuth();
   }
 
+  goToQuestionPage() {
+    this.router.navigate(['/question']);
+  }
+
   validateIsAuth() {
     this.authService.isAuth().then(res => {
-      console.log(res)
+      //console.log(res)
       if (res) {
         console.log("isAuth: ", res)
         //get user data
@@ -45,7 +49,7 @@ export class ProfilePage implements OnInit {
 
 
       } else {
-        this.router.navigate(['/login'])
+        this.router.navigate(['/landing'])
       }
     })
   }
