@@ -11,35 +11,57 @@
 
             <h1 class="title">Iniciar Sesión</h1>
             <br>
-            <br>
-            <form #form="ngForm" (ngSubmit)="login(form)" method="post">
+
+            <form [formGroup]="form" (ngSubmit)="login(form)" method="post">
+
+              <!-- email input -->
+              <div *ngFor="let e of errorMessages.email">
+                <span *ngIf="email.hasError(e.type) && (email.dirty || email.touched)">
+                  <small class="help is-danger">{{e.message}}</small>
+                </span>
+              </div>
+
               <div class="field">
                 <p class="control has-icons-left has-icons-right">
-                  <input class="input is-large is-rounded" ngModel name="email" type="email" placeholder="correo">
+                  <input class="input is-medium is-rounded" formControlName="email" type="email"
+                    placeholder="Correo Electrónico" required="true">
                   <span class=" icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
                 </p>
               </div>
+              <!-- email input -->
+
+              <!-- password input -->
+              <div *ngFor="let e of errorMessages.password">
+                <span *ngIf="password.hasError(e.type) && (password.dirty || password.touched)">
+                  <small class="help is-danger">{{e.message}}</small>
+                </span>
+              </div>
+
               <div class="field">
                 <p class="control has-icons-left">
-                  <input class="input is-large is-rounded" ngModel name="password" type="password"
-                    placeholder="contraseña">
+                  <input class="input is-medium is-rounded" formControlName="password" type="password"
+                    placeholder="Contraseña" required="true">
                   <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
                   </span>
                 </p>
               </div>
+              <!-- password input -->
+
               <br>
-              <button type="submit" class="button is-bg-red is-rounded is-white is-fullwidth is-large">Iniciar
-                Sesión</button>
+              <button [disabled]="!form.valid" type="submit" class="button is-danger is-rounded is-fullwidth is-medium">
+                Iniciar Sesión
+              </button>
               <br>
-              <a href="#" class="is-red">
+              <a href=" #" class="is-red">
                 <p>¿Olvidaste tu contraseña?</p>
               </a>
               <br>
-              <p class=""><a href="#" class="is-red subtitle has-text-weight-bold"
-                  [routerLink]="['/signup']">Registrarse</a></p>
+
+              <p class=""><a href="#" class="is-red subtitle" [routerLink]="['/signup']">Registrarse</a></p>
+
             </form>
           </div>
         </div>
