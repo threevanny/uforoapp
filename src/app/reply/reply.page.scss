@@ -1,0 +1,35 @@
+.is-red {
+  color: #d43131;
+}
+
+.post__container {
+  background-color: rgba($color: #c4c4c4, $alpha: 0.1);
+  border-radius: 10px;
+  margin: 2%;
+  padding: 2%;
+}
+
+.has-border {
+  border: 1px solid #c4c4c4;
+}
+
+.media-content{
+  text-align: left;
+}
+.media-content p {
+  margin-top: 2%;
+} 
+.post__time {
+  float: right;
+}
+
+.post__body {
+  text-align: left;
+}
+.post__body p {
+  padding-left: 10%;
+}
+
+.post__footer {
+  margin-top: 1%;
+}
