@@ -1,12 +1,6 @@
-$our-red: #D43131;
-$our-white: #ffffff;
-
-.is-red {
-  color: $our-red;
+textarea {
+  border: 1px solid rgba($color: #c4c4c4, $alpha: 0.5);
 }
-.is-white {
-  color: $our-white;
-}
-.is-bg-red {
-  background-color: $our-red;
+select {
+  border: 1px solid rgba($color: #c4c4c4, $alpha: 0.5);
 }

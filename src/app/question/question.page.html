@@ -29,7 +29,10 @@
             </div>
           </div>
 
-          <button type="submit" class="button is-bg-red is-rounded is-white is-fullwidth is-medium">Publicar</button>
+          <ion-button type="submit" [disabled]="!form.valid" size="large" expand="full" shape="round">
+            <p class=" text__btn">Publicar</p>
+          </ion-button>
+
         </form>
       </section>
 
