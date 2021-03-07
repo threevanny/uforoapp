@@ -25,6 +25,9 @@ export class QuestionService {
       { idAutor: idAutor, question: question, tag: tag });
   }
 
+  getQestionById(idQuestion: string) {
+    return this.http.get<any>(`${this.env.API}/question/${idQuestion}`)
+  }
   // updateQuestion(id: String, data: any) {
   //   return this.http.put<any>(`${this.env.API}/question/update/${id}`, data);
   // }
