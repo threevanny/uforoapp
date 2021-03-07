@@ -23,6 +23,11 @@
   <!-- float buttom -->
 
   <ion-content>
+    <!-- refresh -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.5" pullMin="100" pullMax="200">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- refresh -->
     <ion-infinite-scroll>
       <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data…">
 
@@ -32,38 +37,44 @@
               <!-- post -->
               <div class="post__container">
                 <div class="post__card">
+                  <!-- header -->
                   <div class="post__header">
                     <div class="media">
                       <div class="media-left">
                         <ion-avatar slot="start">
-                          <img class="is-rounded image is-48x48" [src]="question.avatar">
+                          <img class="is-rounded image is-48x48 has-border" [src]="question.avatar">
                         </ion-avatar>
                       </div>
                       <div class="media-content">
-                        <p><strong>{{question.autor}}</strong><span
-                            class="post__time"><small>{{question.createdAt}}</small></span></p>
+                        <p><strong>{{question.autor}}</strong><span class="post__time"><small>1m</small></span></p>
                         <small>{{question.points}} Pts</small>
                       </div>
                     </div>
                   </div>
+                  <!-- body -->
                   <div class="post__body">
                     <p>{{question.question}}</p>
                   </div>
+                  <!-- footer -->
                   <div class="post__footer">
                     <div class="columns is-mobile">
+
                       <div class="column is-6">
                         <small>{{question.tag}}</small>
                       </div>
+
                       <div class="column is-6">
                         <span class="icon-text">
                           <span class="icon">
                             <i class="fas fa-reply"></i>
                           </span>
-                          <span>Responder</span>
+                          <span (click)="goToReplyPage(question.idQuestion)">Responder</span>
                         </span>
                       </div>
+
                     </div>
                   </div>
+                  <!-- footer -->
                 </div>
               </div>
               <!-- post -->

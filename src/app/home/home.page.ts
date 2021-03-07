@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuestionService } from '../services/question/question.service';
 import { ApiService } from '../services/api/api.service';
-import { Question } from '../models/question'
+import { Question } from '../models/question';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -17,19 +18,16 @@ export class HomePage implements OnInit {
   constructor(
     private questionService: QuestionService,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private menu: MenuController
   ) { }
 
   ngOnInit() {
     this.getQestions();
   }
 
-  goToQuestionPage() {
-    this.router.navigate(['/question']);
-  }
 
   getQestions() {
-
     this.questionService.getQuestions()
       .subscribe(res => {
         res.forEach(q => {
@@ -46,10 +44,26 @@ export class HomePage implements OnInit {
                 points: autor.points
               }
               this.qestionPosts.push(this.question);
-
             })
         });
       })
-    console.log(this.qestionPosts)
+    //console.log(this.qestionPosts)
+  }
+
+
+  doRefresh(event) {
+    this.qestionPosts = [];
+    this.getQestions();
+    setTimeout(() => {
+      this.router.navigate([`/dashboard/home`])
+      event.target.complete();
+    }, 2000);
+  }
+
+  goToQuestionPage() {
+    this.router.navigate(['/question']);
+  }
+  goToReplyPage(idQestion: string) {
+    this.router.navigate([`/reply/${idQestion}`])
   }
 }
