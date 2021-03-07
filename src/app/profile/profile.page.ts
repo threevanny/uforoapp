@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api/api.service';
 import { AuthService } from '../services/auth/auth.service';
+import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 
@@ -15,7 +15,8 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -52,5 +53,30 @@ export class ProfilePage implements OnInit {
         this.router.navigate(['/landing'])
       }
     })
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Cerrar Sesión!',
+      message: '¿Estas seguro que deseas <strong>cerrar sesión</strong>?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel', blah);
+          }
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            this.logout();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }
