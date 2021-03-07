@@ -55,6 +55,7 @@ export class LoginPage implements OnInit {
         console.log(res)
         if (res.isAuth) {
           this.authService.setToken("token", res.token);
+          this.authService.setToken("idUser", res.id);
           this.router.navigate(['/dashboard']);
         } else {
           console.error(res.message);
