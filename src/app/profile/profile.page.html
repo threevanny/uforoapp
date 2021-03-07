@@ -1,9 +1,86 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>profile</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
+
+<!-- float buttom -->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button class="is-red" (click)="goToQuestionPage()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<!-- float buttom -->
 
 <ion-content>
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data…">
 
+      <div class="columns">
+        <div class="column">
+          <div class="card is-shadowless">
+            <!-- profile -->
+            <div class="profile__container" *ngIf="user != undefined">
+              <div class="profile__card">
+                <div class="profile__header">
+
+                  <span class="icon-text btn__edit">
+                    <span class="icon is-large">
+                      <i class="fas fa-user-edit"></i>
+                    </span>
+                  </span>
+
+                  <span class="icon-text btn__logout">
+                    <span class="icon is-large">
+                      <i class="fas fa-power-off"></i>
+                    </span>
+                  </span>
+
+                  <figure class="image is-128x128">
+                    <img class="is-rounded has-border" [src]="user.avatar">
+                  </figure>
+                </div>
+                <div class="profile__body">
+                  <h5><strong>{{ user["name"] }}</strong></h5>
+                  <p class="is-muted"><span>Radiador Springs</span></p>
+                </div>
+                <div class="profile__footer">
+                  <div class="columns is-mobile">
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-comment"></i>
+                        </span>
+                        <span>103 Preguntas</span>
+                      </span>
+                    </div>
+                    <div class="column is-6">
+                      <span class="icon-text">
+                        <span class="icon">
+                          <i class="fas fa-star"></i>
+                        </span>
+                        <span>{{ user["points"] }} Puntos</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+
+              <ion-button (click)="presentAlertConfirm()" size="large" expand="full" shape="round">
+                <p class=" text__btn">Cerrar Sesión</p>
+              </ion-button>
+
+            </div>
+            <!-- profile -->
+
+            <!-- post -->
+
+            <!-- post -->
+          </div>
+        </div>
+      </div>
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

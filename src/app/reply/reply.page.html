@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Respuestas</ion-title>
+    <!-- back button -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/home"></ion-back-button>
+    </ion-buttons>
+    <!-- back button -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-infinite-scroll>
+
+    <div class="columns">
+      <div class="column">
+        <div class="card is-shadowless" *ngFor="let question of qestionPosts">
+          <!-- post -->
+          <div class="post__container">
+            <div class="post__card">
+              <!-- header -->
+              <div class="post__header">
+                <div class="media">
+                  <div class="media-left">
+                    <ion-avatar slot="start">
+                      <img class="is-rounded image is-48x48 has-border" [src]="question.avatar">
+                    </ion-avatar>
+                  </div>
+                  <div class="media-content">
+                    <p><strong>{{question.autor}}</strong><span class="post__time"><small>1m</small></span></p>
+                    <small>{{question.points}} Pts</small>
+                  </div>
+                </div>
+              </div>
+              <!-- body -->
+              <div class="post__body">
+                <p>{{question.question}}</p>
+              </div>
+              <!-- footer -->
+              <div class="post__footer">
+                <div class="columns is-mobile">
+
+                  <div class="column is-6">
+                    <small>{{question.tag}}</small>
+                  </div>
+
+                  <div class="column is-6">
+
+                  </div>
+
+                </div>
+              </div>
+              <!-- footer -->
+            </div>
+          </div>
+          <!-- post -->
+          <h2 class="subtitle">Respuestas</h2>
+
+
+          <!-- replies -->
+          <div class="container__replies" *ngIf="replies.length > 0">
+            <div class="card is-shadowless" *ngFor="let rp of replies">
+              <div class="post__container">
+                <div class="post__card">
+                  <!-- header -->
+                  <div class="post__header">
+                    <div class="media">
+                      <div class="media-left">
+                        <ion-avatar slot="start">
+                          <img class="is-rounded image is-48x48 has-border" [src]="rp.avatar">
+                        </ion-avatar>
+                      </div>
+                      <div class="media-content">
+                        <p><strong>{{rp.autor}}</strong><span class="post__time"><small>1m</small></span></p>
+                        <small>{{rp.points}} Pts</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- body -->
+                  <div class="post__body">
+                    <p>{{rp.reply}}</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- replies -->
+          <!-- form -->
+          <form #form="ngForm" (ngSubmit)="sendReply(form)" method="post">
+
+            <div class="field">
+              <div class="control">
+                <textarea class="textarea" ngModel name="reply" placeholder="Responder a {{question.autor}}"
+                  minlength="5" maxlength="255" required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="button is-danger is-rounded is-fullwidth is-medium">Publicar</button>
+          </form>
+          <!-- form -->
+
+
+        </div>
+      </div>
+    </div>
+
+
+  </ion-infinite-scroll>
+</ion-content>

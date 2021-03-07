@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>question</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="columns">
+    <div class="column">
+      <section class="section">
+        <form #form="ngForm" (ngSubmit)="SendNewQuestion(form)" method="post">
+          <div class="select is-rounded is-fullwidth mb-3">
+            <select ngModel name="tag">
+              <option value="Matemáticas">Matemáticas</option>
+              <option value="Humanidades">Humanidades</option>
+              <option value="Ingles">Ingles</option>
+              <option value="Salud">Salud</option>
+              <option value="Administración">Administración</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <textarea class="textarea" ngModel name="question" placeholder="Escribe tu pregunta..." minlength="5"
+                maxlength="255" required></textarea>
+            </div>
+          </div>
+
+          <ion-button type="submit" [disabled]="!form.valid" size="large" expand="full" shape="round">
+            <p class=" text__btn">Publicar</p>
+          </ion-button>
+
+        </form>
+      </section>
+
+
+    </div>
+  </div>
+
+</ion-content>

@@ -1,8 +1,10 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>search</ion-title>
-  </ion-toolbar>
-</ion-header> -->
+<!-- float buttom -->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button class="is-red" (click)="goToQuestionPage()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<!-- float buttom -->
 
 <ion-content>
   <section class="section">
@@ -10,6 +12,13 @@
       <div class="columns">
         <div class="column">
           <div class="content has-text-centered">
+
+            <!-- back button -->
+            <ion-buttons slot="start">
+              <ion-back-button defaultHref="/dashboard/home"></ion-back-button>
+            </ion-buttons>
+            <!-- back button -->
+
             <h1 class="title">Buscar</h1>
             <br>
 

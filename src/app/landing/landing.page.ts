@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.authService.isAuth().then(res => {
+      console.log("isAuth: ", res);
+      if (res) {
+        this.router.navigate(['/dashboard'])
+      }
+    })
   }
 
+  goToSignupPage() {
+    this.router.navigate(['/signup']);
+  }
+
+  goToLoginPage() {
+    this.router.navigate(['/login']);
+  }
 }

@@ -1,5 +1,9 @@
 export class User {
-  name: string;
-  email: string;
-  password: string;
+  id: string
+  name: string
+  email: string
+  avatar: String
+  points: Number
+  location: string
+  //post[]: post
 }

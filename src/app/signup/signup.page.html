@@ -1,52 +1,112 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>signup</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
   <section class="section">
     <div class="container">
       <div class="columns">
         <div class="column">
           <div class="content has-text-centered">
+
+            <ion-buttons slot="start">
+              <ion-back-button defaultHref="/landing"></ion-back-button>
+            </ion-buttons>
+
             <h1 class="title">Registrarse</h1>
             <br>
-            <br>
-            <form #form="ngForm" (ngSubmit)="signup(form)" method="post">
-              <div class="field">
+
+            <form [formGroup]="form" (ngSubmit)="signup(form)" method="post">
+
+              <!-- name input -->
+              <div *ngFor="let e of errorMessages.name">
+                <span *ngIf="name.hasError(e.type) && (name.dirty || name.touched)">
+                  <small class="help is-danger">{{e.message}}</small>
+                </span>
+              </div>
+
+              <div class=" field">
                 <p class="control has-icons-left has-icons-right">
-                  <input class="input is-large is-rounded" ngModel name="name" type="name" placeholder="Nombre">
+                  <input class="input is-medium is-rounded" formControlName="name" type="name" placeholder="Nombre"
+                    required="true">
                   <span class=" icon is-small is-left">
                     <i class="fas fa-user"></i>
                   </span>
                 </p>
               </div>
+              <!-- name input -->
+
+              <!-- email input -->
+              <div *ngFor="let e of errorMessages.email">
+                <span *ngIf="email.hasError(e.type) && (email.dirty || email.touched)">
+                  <small class="help is-danger">{{e.message}}</small>
+                </span>
+              </div>
+
               <div class="field">
                 <p class="control has-icons-left has-icons-right">
-                  <input class="input is-large is-rounded" ngModel name="email" type="email" placeholder="Correo">
+                  <input class="input is-medium is-rounded" formControlName="email" type="email"
+                    placeholder="Correo Electrónico" required="true">
                   <span class=" icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
                 </p>
               </div>
+              <!-- email input -->
+
+              <!-- password input -->
+              <div *ngFor="let e of errorMessages.password">
+                <span *ngIf="password.hasError(e.type) && (password.dirty || password.touched)">
+                  <small class="help is-danger">{{e.message}}</small>
+                </span>
+              </div>
+
               <div class="field">
                 <p class="control has-icons-left">
-                  <input class="input is-large is-rounded" ngModel name="password" type="password"
-                    placeholder="Contraseña">
+                  <input class="input is-medium is-rounded" formControlName="password" type="password"
+                    placeholder="Contraseña" required="true">
                   <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
                   </span>
                 </p>
               </div>
+              <!-- password input -->
+
+
+              <!-- <div *ngFor="let e of errorMessages.cpassword">
+                <span *ngIf="cpassword.hasError(e.type) && (cpassword.dirty || cpassword.touched)">
+                  <small>{{e.message}}</small>
+                </span>
+              </div>
+
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input is-medium is-rounded" formControlName="cpassword" type="password"
+                    placeholder="Confirmar Contraseña" required="true">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div> -->
+
               <br>
-              <button type="submit" class="button is-bg-red is-rounded is-white is-fullwidth is-large">
+
+              <ion-button type="submit" [disabled]="!form.valid" size="large" expand="full" shape="round">
+                <p class=" text__btn">Registrarse</p>
+              </ion-button>
+
+              <!-- <button [disabled]="!form.valid" type="submit" class="button is-danger is-rounded is-fullwidth is-medium">
                 Registrarse
-              </button>
+              </button> -->
+
               <br>
               <br>
-              <p class=""><a href="#" class="is-red subtitle has-text-weight-bold" [routerLink]="['/login']">Iniciar
-                  Sesión</a></p>
+
+              <span>
+                <a href="#" class="subtitle has-text-weight-bold is-danger" [routerLink]="['/login']">Iniciar
+                  Sesión</a>
+              </span>
+              <span class="icon">
+                <i class="fas fa-arrow-right"></i>
+              </span>
+
+
             </form>
           </div>
         </div>
