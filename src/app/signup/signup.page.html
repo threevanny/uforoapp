@@ -87,16 +87,25 @@
 
               <br>
 
-              <button [disabled]="!form.valid" type="submit" class="button is-danger is-rounded is-fullwidth is-medium">
+              <ion-button type="submit" [disabled]="!form.valid" size="large" expand="full" shape="round">
+                <p class=" text__btn">Registrarse</p>
+              </ion-button>
+
+              <!-- <button [disabled]="!form.valid" type="submit" class="button is-danger is-rounded is-fullwidth is-medium">
                 Registrarse
-              </button>
+              </button> -->
 
               <br>
               <br>
 
-              <p class=""><a href="#" class="is-red subtitle has-text-weight-bold" [routerLink]="['/login']">Iniciar
+              <span>
+                <a href="#" class="subtitle has-text-weight-bold is-danger" [routerLink]="['/login']">Iniciar
                   Sesión</a>
-              </p>
+              </span>
+              <span class="icon">
+                <i class="fas fa-arrow-right"></i>
+              </span>
+
 
             </form>
           </div>
