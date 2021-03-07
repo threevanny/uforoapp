@@ -21,9 +21,14 @@ const routes: Routes = [
   {
     path: 'signup',
     loadChildren: () => import('./signup/signup.module').then(m => m.SignupPageModule)
-  },  {
+  },
+  {
     path: 'question',
-    loadChildren: () => import('./question/question.module').then( m => m.QuestionPageModule)
+    loadChildren: () => import('./question/question.module').then(m => m.QuestionPageModule)
+  },
+  {
+    path: 'reply/:idQuestion',
+    loadChildren: () => import('./reply/reply.module').then(m => m.ReplyPageModule)
   }
 
 ];
