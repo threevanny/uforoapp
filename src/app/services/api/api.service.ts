@@ -16,26 +16,7 @@ export class ApiService {
   getUserById(id: String) {
     return this.http.get<any>(`${this.env.API}/user/${id}`);
   }
-  //Replies request
-  getReplyById(id: String) {
-    return this.http.get(`${this.env.API}/reply/${id}`);
-  }
 
-  getReplies() {
-    return this.http.get(`${this.env.API}/replies/`);
-  }
-
-  newReply(data: any) {
-    return this.http.post(`${this.env.API}/reply/new/`, data);
-  }
-
-  updateReply(id: String, data: any) {
-    return this.http.put(`${this.env.API}/reply/update/${id}`, data);
-  }
-
-  deleteReply(id: String) {
-    return this.http.delete(`${this.env.API}/reply/delete/${id}`);
-  }
 
   //Avatar request
   getAvatarById(id: String) {
