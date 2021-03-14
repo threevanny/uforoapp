@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
-import { NavController } from '@ionic/angular';
-import { AlertService } from '../services/alert.service'
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -68,7 +66,7 @@ export class SignupPage implements OnInit {
   })
 
 
-  signup(form: NgForm) {
+  signup(form: FormGroup) {
     const { name, email, password } = form.value;
 
     this.authService.signup(name, email, password)
