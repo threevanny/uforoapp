@@ -11,9 +11,9 @@
   <div class="columns">
     <div class="column">
       <section class="section">
-        <form #form="ngForm" (ngSubmit)="SendNewQuestion(form)" method="post">
+        <form [formGroup]="form" (ngSubmit)="SendNewQuestion(form)" method="post">
 
-          <ion-select placeholder="Selecciona una Categoría" ngModel name="tag">
+          <ion-select placeholder="Selecciona una Categoría" formControlName="tag">
             <ion-select-option value="Matemáticas">Matemáticas</ion-select-option>
             <ion-select-option value="Humanidades">Humanidades</ion-select-option>
             <ion-select-option value="Ingles">Ingles</ion-select-option>
@@ -25,11 +25,11 @@
 
           <br>
 
-
           <div class="field">
             <div class="control">
-              <textarea class="textarea" ngModel name="question" placeholder="Escribe tu pregunta..." minlength="5"
-                maxlength="255" required></textarea>
+              <textarea class="textarea" rows="6" formControlName="question" placeholder="Escribe tu pregunta..."
+                maxlength="255">
+              </textarea>
             </div>
           </div>
 
