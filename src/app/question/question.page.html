@@ -13,6 +13,12 @@
       <section class="section">
         <form [formGroup]="form" (ngSubmit)="SendNewQuestion(form)" method="post">
 
+          <div *ngFor="let e of errorMessages.tag">
+            <span *ngIf="tag.hasError(e.type) && (tag.dirty || tag.touched)">
+              <small class="help is-danger">{{e.message}}</small>
+            </span>
+          </div>
+
           <ion-select placeholder="Selecciona una Categoría" formControlName="tag">
             <ion-select-option value="Matemáticas">Matemáticas</ion-select-option>
             <ion-select-option value="Humanidades">Humanidades</ion-select-option>
@@ -24,6 +30,12 @@
           </ion-select>
 
           <br>
+
+          <div *ngFor="let e of errorMessages.question">
+            <span *ngIf="question.hasError(e.type) && (question.dirty || question.touched)">
+              <small class="help is-danger">{{e.message}}</small>
+            </span>
+          </div>
 
           <div class="field">
             <div class="control">

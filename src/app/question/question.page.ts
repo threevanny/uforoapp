@@ -33,7 +33,7 @@ export class QuestionPage implements OnInit {
 
   public errorMessages = {
     tag: [
-      { type: 'required', message: 'Elige una categoria para tu pregunta' }
+      { type: 'required', message: 'Selecciona una categoría para tu pregunta' }
     ],
     question: [
       { type: 'required', message: 'Escribe una pregunta' },
