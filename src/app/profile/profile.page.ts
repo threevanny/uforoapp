@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 
@@ -16,7 +16,8 @@ export class ProfilePage implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private actionSheetController: ActionSheetController
   ) { }
 
   ngOnInit() {
@@ -78,5 +79,45 @@ export class ProfilePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Opciones',
+      cssClass: 'my-custom-class',
+      buttons: [{
+        text: 'Cerrar Sesión',
+        icon: 'log-out-outline',
+        handler: () => {
+          this.presentAlertConfirm();
+        }
+      }, {
+        text: 'Editar Perfil',
+        icon: 'person-circle-outline',
+        handler: () => {
+          console.log('Editar Perfil');
+        }
+      }, {
+        text: 'Eliminar Cuenta',
+        icon: 'trash-outline',
+        handler: () => {
+          console.log('Eliminar Cuenta');
+        }
+      }, {
+        text: 'Terminos y Condiciones',
+        icon: 'receipt-outline',
+        handler: () => {
+          console.log('T&C');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 }

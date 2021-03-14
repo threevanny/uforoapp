@@ -1,9 +1,9 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/dashboard"></ion-back-button>
     </ion-buttons>
-    <ion-title>question</ion-title>
+    <ion-title>Preguntar</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,15 +12,19 @@
     <div class="column">
       <section class="section">
         <form #form="ngForm" (ngSubmit)="SendNewQuestion(form)" method="post">
-          <div class="select is-rounded is-fullwidth mb-3">
-            <select ngModel name="tag">
-              <option value="Matemáticas">Matemáticas</option>
-              <option value="Humanidades">Humanidades</option>
-              <option value="Ingles">Ingles</option>
-              <option value="Salud">Salud</option>
-              <option value="Administración">Administración</option>
-            </select>
-          </div>
+
+          <ion-select placeholder="Selecciona una Categoría" ngModel name="tag">
+            <ion-select-option value="Matemáticas">Matemáticas</ion-select-option>
+            <ion-select-option value="Humanidades">Humanidades</ion-select-option>
+            <ion-select-option value="Ingles">Ingles</ion-select-option>
+            <ion-select-option value="Salud">Salud</ion-select-option>
+            <ion-select-option value="Administración">Administración</ion-select-option>
+            <ion-select-option value="Política">Política</ion-select-option>
+            <ion-select-option value="Ingenieria">Ingenieria</ion-select-option>
+          </ion-select>
+
+          <br>
+
 
           <div class="field">
             <div class="control">
@@ -28,6 +32,8 @@
                 maxlength="255" required></textarea>
             </div>
           </div>
+
+          <br>
 
           <ion-button type="submit" [disabled]="!form.valid" size="large" expand="full" shape="round">
             <p class=" text__btn">Publicar</p>

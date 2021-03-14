@@ -31,56 +31,61 @@
     <ion-infinite-scroll>
       <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data…">
 
-        <div class="columns">
-          <div class="column">
+        <!-- post -->
+        <div class="colums">
+          <div class="column p-0">
             <div class="card is-shadowless" *ngFor="let question of qestionPosts">
-              <!-- post -->
               <div class="post__container">
                 <div class="post__card">
-                  <!-- header -->
-                  <div class="post__header">
-                    <div class="media">
-                      <div class="media-left">
-                        <ion-avatar slot="start">
-                          <img class="is-rounded image is-48x48 has-border" [src]="question.avatar">
-                        </ion-avatar>
+                  <div class="columns is-mobile">
+                    <div class="column is-2">
+                      <!-- avatar -->
+                      <ion-avatar slot="start">
+                        <img class="is-rounded image is-48x48" [src]="question.avatar">
+                      </ion-avatar>
+                      <!-- avatar -->
+                    </div>
+                    <div class="column">
+                      <!-- header -->
+                      <div class="post__header">
+                        <div class="media">
+                          <div class="media-content">
+                            <p><strong>{{question.autor}}</strong><span class="post__time"><small>1 m</small></span></p>
+                            <small>{{question.points}} Pts</small>
+                          </div>
+                        </div>
                       </div>
-                      <div class="media-content">
-                        <p><strong>{{question.autor}}</strong><span class="post__time"><small>1m</small></span></p>
-                        <small>{{question.points}} Pts</small>
+                      <!-- header -->
+                      <!-- body -->
+                      <div class="post__body mt-3 mb-3">
+                        <p>{{question.question}}</p>
                       </div>
+                      <!-- body -->
+                      <!-- footer -->
+                      <div class="post__footer">
+                        <div class="columns is-mobile">
+                          <div class="column is-6 has-text-left has-text-danger">
+                            <small>{{question.tag}}</small>
+                          </div>
+                          <div class="column is-6">
+                            <span class="icon-text" (click)="goToReplyPage(question.idQuestion)">
+                              <span class="icon">
+                                <ion-icon name="chatbubble-outline"></ion-icon>
+                              </span>
+                              <span><small>Respuestas</small></span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- footer -->
                     </div>
                   </div>
-                  <!-- body -->
-                  <div class="post__body">
-                    <p>{{question.question}}</p>
-                  </div>
-                  <!-- footer -->
-                  <div class="post__footer">
-                    <div class="columns is-mobile">
-
-                      <div class="column is-6">
-                        <small>{{question.tag}}</small>
-                      </div>
-
-                      <div class="column is-6">
-                        <span class="icon-text">
-                          <span class="icon">
-                            <i class="fas fa-reply"></i>
-                          </span>
-                          <span (click)="goToReplyPage(question.idQuestion)">Responder</span>
-                        </span>
-                      </div>
-
-                    </div>
-                  </div>
-                  <!-- footer -->
                 </div>
               </div>
-              <!-- post -->
             </div>
           </div>
         </div>
+        <!-- post -->
 
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>

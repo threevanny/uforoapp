@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { NavController } from '@ionic/angular';
 import { AlertService } from '../services/alert.service'
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -16,9 +17,8 @@ export class SignupPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private navCtrl: NavController,
-    private alertService: AlertService,
     private router: Router,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -77,9 +77,26 @@ export class SignupPage implements OnInit {
           if (res.succes) {
             // show message to user
             console.log(res);
-            this.router.navigate(['/login']);
+
+            this.presentAlertConfirm();
+
+            setTimeout(() => {
+              this.router.navigate(['/login']);
+            }, 2000);
+
           }
         }
       )
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Registro Exitoso!',
+      message: 'Inicia sesión para difrutar de Uforo',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }

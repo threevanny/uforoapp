@@ -1,8 +1,10 @@
-<!-- <ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-icon slot="icon-only" name="settings-outline" (click)="presentActionSheet()"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header> -->
+</ion-header>
 
 <!-- float buttom -->
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -23,26 +25,13 @@
             <div class="profile__container" *ngIf="user != undefined">
               <div class="profile__card">
                 <div class="profile__header">
-
-                  <span class="icon-text btn__edit">
-                    <span class="icon is-large">
-                      <i class="fas fa-user-edit"></i>
-                    </span>
-                  </span>
-
-                  <span class="icon-text btn__logout">
-                    <span class="icon is-large">
-                      <i class="fas fa-power-off"></i>
-                    </span>
-                  </span>
-
                   <figure class="image is-128x128">
-                    <img class="is-rounded has-border" [src]="user.avatar">
+                    <img class="is-rounded" [src]="user.avatar">
                   </figure>
                 </div>
                 <div class="profile__body">
                   <h5><strong>{{ user["name"] }}</strong></h5>
-                  <p class="is-muted"><span>Radiador Springs</span></p>
+                  <p class="location"><span>Universidad del Valle</span></p>
                 </div>
                 <div class="profile__footer">
                   <div class="columns is-mobile">
@@ -51,7 +40,7 @@
                         <span class="icon">
                           <i class="fas fa-comment"></i>
                         </span>
-                        <span>103 Preguntas</span>
+                        <span>34 Preguntas</span>
                       </span>
                     </div>
                     <div class="column is-6">
@@ -65,18 +54,12 @@
                   </div>
                 </div>
               </div>
-              <br>
 
-              <ion-button (click)="presentAlertConfirm()" size="large" expand="full" shape="round">
-                <p class=" text__btn">Cerrar Sesión</p>
-              </ion-button>
 
             </div>
             <!-- profile -->
 
-            <!-- post -->
 
-            <!-- post -->
           </div>
         </div>
       </div>
