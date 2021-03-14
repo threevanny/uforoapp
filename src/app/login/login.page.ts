@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
       { type: 'pattern', message: 'Se requiere un Correo Univalle valido' }
     ],
     password: [
-      { type: 'required', message: 'Ingresa tu contaseña para iniciar sesión' },
+      { type: 'required', message: 'Ingrese su contaseña para iniciar sesión' },
     ]
   }
 
@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
     password: ["", Validators.compose([Validators.required])],
   })
 
-  login(form: NgForm) {
+  login(form: FormGroup) {
     const { email, password } = form.value;
     this.authService.login(email, password).subscribe(
       res => {
