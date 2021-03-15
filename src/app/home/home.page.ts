@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuestionService } from '../services/question/question.service';
-import { ApiService } from '../services/api/api.service';
 import { Question } from '../models/question';
-import { MenuController } from '@ionic/angular';
+import { ReplyService } from '../services/reply/reply.service';
+import { ApiService } from '../services/api/api.service';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +18,8 @@ export class HomePage implements OnInit {
   constructor(
     private questionService: QuestionService,
     private router: Router,
+    private replyService: ReplyService,
     private apiService: ApiService,
-    private menu: MenuController
   ) { }
 
   ngOnInit() {
@@ -31,19 +31,23 @@ export class HomePage implements OnInit {
     this.questionService.getQuestions()
       .subscribe(res => {
         res.forEach(q => {
-          this.apiService.getUserById(q.idAutor)
-            .subscribe(autor => {
-              this.question = {
-                idQuestion: q._id,
-                question: q.question,
-                tag: q.tag,
-                createdAt: q.createdAt,//(Date.now() - Date.parse(q.createdAt)),
-                idAutor: autor._id,
-                avatar: autor.avatar,
-                autor: autor.name,
-                points: autor.points
-              }
-              this.qestionPosts.push(this.question);
+          this.replyService.getCountReplies(q._id)
+            .subscribe(countReplies => {
+              this.apiService.getUserById(q.idAutor)
+                .subscribe(autor => {
+                  this.question = {
+                    idQuestion: q._id,
+                    question: q.question,
+                    tag: q.tag,
+                    replies: countReplies,
+                    createdAt: q.createdAt,//(Date.now() - Date.parse(q.createdAt)),
+                    idAutor: autor._id,
+                    avatar: autor.avatar,
+                    autor: autor.name,
+                    points: autor.points,
+                  }
+                  this.qestionPosts.push(this.question);
+                })
             })
         });
       })
