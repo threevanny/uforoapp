@@ -28,6 +28,10 @@ export class QuestionService {
   getQestionById(idQuestion: string) {
     return this.http.get<any>(`${this.env.API}/question/${idQuestion}`)
   }
+
+  getQuestionsByIdAutor(idAutor: string) {
+    return this.http.get<any>(`${this.env.API}/questions/autor/${idAutor}`)
+  }
   // updateQuestion(id: String, data: any) {
   //   return this.http.put<any>(`${this.env.API}/question/update/${id}`, data);
   // }

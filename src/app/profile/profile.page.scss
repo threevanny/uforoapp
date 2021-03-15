@@ -4,3 +4,32 @@
 .location {
   color: #c4c4c4;
 }
+
+.btn_config{
+  padding: 3%;
+}
+
+.post__container {
+  background-color: rgba($color: #c4c4c4, $alpha: 0.2);
+  border-radius: 10px;
+  margin: 2%;
+  padding: 2%;
+}
+
+.has-border {
+  border: 1px solid #c4c4c4;
+}
+
+.media-content{
+  text-align: left;
+}
+.media-content p {
+  padding: 1%;
+} 
+.post__time {
+  float: right;
+}
+
+.post__body {
+  text-align: left;
+}
