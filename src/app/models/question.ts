@@ -1,7 +1,8 @@
 export class Question {
   idQuestion: string
   question: string
-  tag: string
+  tag: any
+  replies: Number
   createdAt: string
   idAutor: string
   avatar: string
