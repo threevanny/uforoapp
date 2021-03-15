@@ -20,6 +20,10 @@ export class ReplyService {
     return this.http.get<any>(`${this.env.API}/replies/${idQuestion}`);
   }
 
+  getCountReplies(idQuestion: string) {
+    return this.http.get<any>(`${this.env.API}/replies/count/${idQuestion}`)
+  }
+
   newReply(idAutor: string, idQuestion: string, reply: string) {
     return this.http.post<any>(`${this.env.API}/reply/new/`,
       { idAutor: idAutor, idQuestion: idQuestion, reply: reply }
