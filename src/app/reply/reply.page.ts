@@ -81,6 +81,7 @@ export class ReplyPage implements OnInit {
               idQuestion: q._id,
               question: q.question,
               tag: q.tag,
+              replies: "",
               createdAt: q.createdAt,//(Date.now() - Date.parse(q.createdAt)),
               idAutor: autor._id,
               avatar: autor.avatar,
@@ -98,6 +99,7 @@ export class ReplyPage implements OnInit {
         res.forEach(r => {
           this.apiService.getUserById(r.idAutor)
             .subscribe(autor => {
+
               this.thisReply = {
                 idAutor: r.idAutor,
                 idQuestion: r.idQuestion,
@@ -107,11 +109,11 @@ export class ReplyPage implements OnInit {
                 autor: autor.name,
                 points: autor.points
               }
-              this.replies.push(this.reply)
+
+              this.replies.push(this.thisReply)
             })
         })
       })
-    console.log("rp:", this.replies)
   }
 
   doRefresh(event) {
