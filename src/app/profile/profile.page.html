@@ -1,8 +1,13 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Perfíl
+    </ion-title>
   </ion-toolbar>
-</ion-header> -->
+</ion-header>
 
 <!-- float buttom -->
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -12,52 +17,50 @@
 </ion-fab>
 <!-- float buttom -->
 
-<ion-content>
+<ion-content *ngIf="user != undefined">
+  <!-- refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.5" pullMin="100" pullMax="200">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- refresh -->
+
   <ion-infinite-scroll>
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data…">
 
       <div class="columns">
         <div class="column">
           <div class="card is-shadowless">
+
+            <ion-buttons class="btn_config" slot="start">
+              <ion-icon slot="icon-only" name="settings-outline" (click)="presentActionSheet()"></ion-icon>
+            </ion-buttons>
+
             <!-- profile -->
-            <div class="profile__container" *ngIf="user != undefined">
+            <div class="profile__container">
               <div class="profile__card">
                 <div class="profile__header">
-
-                  <span class="icon-text btn__edit">
-                    <span class="icon is-large">
-                      <i class="fas fa-user-edit"></i>
-                    </span>
-                  </span>
-
-                  <span class="icon-text btn__logout">
-                    <span class="icon is-large">
-                      <i class="fas fa-power-off"></i>
-                    </span>
-                  </span>
-
                   <figure class="image is-128x128">
-                    <img class="is-rounded has-border" [src]="user.avatar">
+                    <img class="is-rounded" [src]="user.avatar">
                   </figure>
                 </div>
                 <div class="profile__body">
                   <h5><strong>{{ user["name"] }}</strong></h5>
-                  <p class="is-muted"><span>Radiador Springs</span></p>
+                  <p class="location"><span>Universidad del Valle</span></p>
                 </div>
                 <div class="profile__footer">
                   <div class="columns is-mobile">
                     <div class="column is-6">
                       <span class="icon-text">
                         <span class="icon">
-                          <i class="fas fa-comment"></i>
+                          <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                         </span>
-                        <span>103 Preguntas</span>
+                        <span>{{ user["questions"]}} Preguntas</span>
                       </span>
                     </div>
                     <div class="column is-6">
                       <span class="icon-text">
                         <span class="icon">
-                          <i class="fas fa-star"></i>
+                          <ion-icon name="star-outline"></ion-icon>
                         </span>
                         <span>{{ user["points"] }} Puntos</span>
                       </span>
@@ -65,21 +68,73 @@
                   </div>
                 </div>
               </div>
-              <br>
-
-              <ion-button (click)="presentAlertConfirm()" size="large" expand="full" shape="round">
-                <p class=" text__btn">Cerrar Sesión</p>
-              </ion-button>
 
             </div>
             <!-- profile -->
-
-            <!-- post -->
-
-            <!-- post -->
           </div>
         </div>
       </div>
+
+      <!-- div -->
+      <div>
+        <hr>
+      </div>
+
+      <!-- post -->
+      <div class="colums">
+        <div class="column p-0">
+          <div class="card is-shadowless" *ngFor="let question of qestionPosts">
+            <div class="post__container">
+              <div class="post__card">
+                <div class="columns is-mobile">
+                  <div class="column is-2">
+                    <!-- avatar -->
+                    <ion-avatar slot="start">
+                      <img class="is-rounded image is-48x48" [src]="user.avatar">
+                    </ion-avatar>
+                    <!-- avatar -->
+                  </div>
+                  <div class="column">
+                    <!-- header -->
+                    <div class="post__header">
+                      <div class="media">
+                        <div class="media-content">
+                          <p><strong>{{ user["name"]}}</strong><span class="post__time"><small>1 m</small></span></p>
+                          <small>{{ user["points"] }} Pts</small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- header -->
+                    <!-- body -->
+                    <div class="post__body mt-3 mb-3">
+                      <p>{{question.question}}</p>
+                    </div>
+                    <!-- body -->
+                    <!-- footer -->
+                    <div class="post__footer">
+                      <div class="columns is-mobile">
+                        <div class="column is-6 has-text-left has-text-danger">
+                          <small>{{question.tag}}</small>
+                        </div>
+                        <div class="column is-6">
+                          <span class="icon-text" (click)="goToReplyPage(question.idQuestion)">
+                            <span class="icon">
+                              <ion-icon name="chatbubble-outline"></ion-icon>
+                            </span>
+                            <span><small>{{question.replies}} Respuestas</small></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- footer -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- post -->
 
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

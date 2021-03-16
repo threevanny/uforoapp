@@ -4,6 +4,7 @@ import { QuestionService } from '../services/question/question.service';
 import { AuthService } from '../services/auth/auth.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -16,13 +17,35 @@ export class QuestionPage implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
   }
 
-  SendNewQuestion(form: NgForm) {
+  get tag() {
+    return this.form.get('tag');
+  }
+  get question() {
+    return this.form.get('question');
+  }
+
+  public errorMessages = {
+    tag: [
+      { type: 'required', message: 'Selecciona una categoría para tu pregunta' }
+    ],
+    question: [
+      { type: 'required', message: 'Escribe una pregunta' },
+    ]
+  }
+
+  form = this.formBuilder.group({
+    tag: ["", Validators.compose([Validators.required])],
+    question: ["", Validators.compose([Validators.required])],
+  })
+
+  SendNewQuestion(form: FormGroup) {
     console.log(form.value)
     //validate data
     const { question, tag } = form.value;

@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/dashboard"></ion-back-button>
     </ion-buttons>
-    <ion-title>question</ion-title>
+    <ion-title>Preguntar</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,23 +11,44 @@
   <div class="columns">
     <div class="column">
       <section class="section">
-        <form #form="ngForm" (ngSubmit)="SendNewQuestion(form)" method="post">
-          <div class="select is-rounded is-fullwidth mb-3">
-            <select ngModel name="tag">
-              <option value="Matemáticas">Matemáticas</option>
-              <option value="Humanidades">Humanidades</option>
-              <option value="Ingles">Ingles</option>
-              <option value="Salud">Salud</option>
-              <option value="Administración">Administración</option>
-            </select>
+        <form [formGroup]="form" (ngSubmit)="SendNewQuestion(form)" method="post">
+
+          <div *ngFor="let e of errorMessages.tag">
+            <span *ngIf="tag.hasError(e.type) && (tag.dirty || tag.touched)">
+              <small class="help is-danger">{{e.message}}</small>
+            </span>
+          </div>
+
+          <ion-select placeholder="Selecciona una Categoría" formControlName="tag">
+            <ion-select-option value="Arte">Arte</ion-select-option>
+            <ion-select-option value="C. Naturales y Exactas">C. Naturales y Exactas</ion-select-option>
+            <ion-select-option value="Administración">Administración</ion-select-option>
+            <ion-select-option value="Salud">Salud</ion-select-option>
+            <ion-select-option value="C. Sociales y Económicas">C. Sociales y Económicas</ion-select-option>
+            <ion-select-option value="Humanidades">Humanidades</ion-select-option>
+            <ion-select-option value="Ingeniería">Ingeniería</ion-select-option>
+            <ion-select-option value="Videojuegos">Videojuegos</ion-select-option>
+            <ion-select-option value="Deporte">Deporte</ion-select-option>
+            <ion-select-option value="Sin categoría">Sin categoría</ion-select-option>
+          </ion-select>
+
+          <br>
+
+          <div *ngFor="let e of errorMessages.question">
+            <span *ngIf="question.hasError(e.type) && (question.dirty || question.touched)">
+              <small class="help is-danger">{{e.message}}</small>
+            </span>
           </div>
 
           <div class="field">
             <div class="control">
-              <textarea class="textarea" ngModel name="question" placeholder="Escribe tu pregunta..." minlength="5"
-                maxlength="255" required></textarea>
+              <textarea class="textarea" rows="6" formControlName="question" placeholder="Escribe tu pregunta..."
+                maxlength="255">
+              </textarea>
             </div>
           </div>
+
+          <br>
 
           <ion-button type="submit" [disabled]="!form.valid" size="large" expand="full" shape="round">
             <p class=" text__btn">Publicar</p>
