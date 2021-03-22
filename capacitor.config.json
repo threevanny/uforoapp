@@ -1,12 +1,15 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "uforoapp",
+  "appId": "co.uforo.app",
+  "appName": "Uforo",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 0
+      "launchShowDuration": 3000,
+      "showSpinner": true,
+      "spinnerColor": "#D43131",
+      "androidSpinnerStyle": "large"
     }
   },
   "cordova": {}
