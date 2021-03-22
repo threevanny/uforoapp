@@ -72,16 +72,16 @@ export class SignupPage implements OnInit {
     this.authService.signup(name, email, password)
       .subscribe(
         res => {
-          if (res.succes) {
-            // show message to user
-            console.log(res);
+          if (res.userExists) {
+            this.presentWarnigAlert();
+          } else {
+            if (res.isOk) {
+              this.presentAlertConfirm();
 
-            this.presentAlertConfirm();
-
-            setTimeout(() => {
-              this.router.navigate(['/login']);
-            }, 2000);
-
+              setTimeout(() => {
+                this.router.navigate(['/login']);
+              }, 2000);
+            }
           }
         }
       )
@@ -93,6 +93,16 @@ export class SignupPage implements OnInit {
       header: 'Registro Exitoso!',
       message: 'Inicia sesión para difrutar de Uforo',
       buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async presentWarnigAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Error',
+      message: 'Este email ya esta registrado. NO puedes tener más de una cuenta asociada al mismo email. Intenta iniciar sesión.',
+      buttons: ['Ok']
     });
 
     await alert.present();
