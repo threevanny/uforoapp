@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -52,15 +54,28 @@ export class LoginPage implements OnInit {
     const { email, password } = form.value;
     this.authService.login(email, password).subscribe(
       res => {
-        console.log(res)
-        if (res.isAuth) {
-          this.authService.setToken("token", res.token);
-          this.authService.setToken("idUser", res.id);
-          this.router.navigate(['/dashboard']);
+        if (res.notMatch) {
+          this.presentWarnigAlert();
         } else {
-          console.error(res.message);
+          if (res.isAuth) {
+            this.authService.setToken("token", res.token);
+            this.authService.setToken("idUser", res.id);
+            this.router.navigate(['/dashboard']);
+          }
         }
       }
     )
   }
+
+  async presentWarnigAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Error',
+      message: 'El email o la Contraseña son incorrectos.',
+      buttons: ['Ok']
+    });
+
+    await alert.present();
+  }
+
 }
